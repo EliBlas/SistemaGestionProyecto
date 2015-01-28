@@ -1,3 +1,4 @@
 angular.module("appService",[
-	"apiService"
+	"apiService",
+	"userService"
 ])

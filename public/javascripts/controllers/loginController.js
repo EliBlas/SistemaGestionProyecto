@@ -1,7 +1,21 @@
 angular.module("loginController",[])
-    .controller("LoginController",['$scope',function($scope){
+    .controller("LoginController",['$scope','UserService',function($scope,UserService){
+        $scope.form = {};
 
-        $scope.login = function(){
-            console.log($scope.user);
+        $scope.form.submitForm = function(user){
+            console.log(user)
+
+            UserService.login(user)
+                .success(function(data){
+                    UserService.authenticated(data);
+                })
+                .error(function(err,status){
+                    $scope.form.error = err;
+                    $scope.form.user  = {};
+                    console.log(err);
+                    console.log(status);
+                });;
         }
+
+
     }])
